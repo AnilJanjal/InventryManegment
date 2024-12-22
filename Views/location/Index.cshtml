@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebApplication3.Models.Locations>
+
+@{
+    ViewData["Title"] = "Locations";
+}
+
+<h2>Location List</h2>
+
+<!-- Create Button -->
+<a href="@Url.Action("Create", "Location")" class="btn btn-primary mb-3">Create New Location</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Location Id</th>
+            <th>Name</th>
+            <th>Status</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LocationId</td>
+                <td>@item.LocationTitle</td>
+          
+                <td>
+                    <span class="badge @(item.IsActive ? "bg-success" : "bg-danger")">
+                        @(item.IsActive ? "Active" : "Inactive")
+                    </span>
+               
+            </tr>
+        }
+    </tbody>
+</table>

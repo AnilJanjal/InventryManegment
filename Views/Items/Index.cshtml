@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApplication3.Models.Items>
+
+<h2>Items</h2>
+
+<form id="searchForm" class="mb-3">
+    <div class="row align-items-center">
+        <!-- Column for "Create New Item" button -->
+        <div class="col-2">
+            <a href="@Url.Action("Create", "Items")" class="btn btn-primary w-100">Create New Item</a>
+        </div>
+
+        <!-- Column for search box and search button -->
+        <div class="col-10">
+            <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Search by item title or code"
+                       id="searchQuery"
+                       name="searchQuery"
+                       value="@ViewData["SearchQuery"]"
+                       oninput="performSearch()" />
+                <button class="btn btn-primary" type="button" onclick="performSearch()">Search</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div id="itemsTable">
+    @await Html.PartialAsync("_ItemsTable", Model) <!-- Load the initial table -->
+</div>
+
+<script>
+    function performSearch() {
+        const searchQuery = document.getElementById('searchQuery').value;
+
+        fetch(`/Items/Index?searchQuery=${encodeURIComponent(searchQuery)}`, {
+            method: 'GET',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest' // Indicate this is an AJAX request
+            }
+        })
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('itemsTable').innerHTML = html; // Update the table content
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
+</script>

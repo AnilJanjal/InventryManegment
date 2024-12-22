@@ -1,0 +1,49 @@
+﻿@model WebApplication3.Models.Items
+
+<h2>Edit Item</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" class="form-control" id="ItemId" name="ItemId" value="@Model.ItemId" required />
+    <div class="form-group">
+        <label for="ItemCode">Item Code</label>
+        <input type="text" class="form-control" id="ItemCode" name="ItemCode" value="@Model.ItemCode" required />
+    </div>
+    <div class="form-group">
+        <label for="ItemTitle">Item Title</label>
+        <input type="text" class="form-control" id="ItemTitle" name="ItemTitle" value="@Model.ItemTitle" required />
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea class="form-control" id="Description" name="Description">@Model.Description</textarea>
+    </div>
+    <div class="form-group">
+        <label for="SalePrice">Sale Price</label>
+        <input type="number" class="form-control" id="SalePrice" name="SalePrice" value="@Model.SalePrice" step="0.01" required />
+    </div>
+    <div class="form-group">
+        <label for="PurchasePrice">Purchase Price</label>
+        <input type="number" class="form-control" id="PurchasePrice" name="PurchasePrice" value="@Model.PurchasePrice" step="0.01" required />
+    </div>
+    <div class="form-group">
+        <label for="LocationId">Location</label>
+        <select class="form-control" id="LocationId" name="LocationId">
+            @foreach (var location in ViewData["Locations"] as List<WebApplication3.Models.Locations>)
+            {
+                <option value="@location.LocationId">@location.LocationTitle</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="IsActive">Active</label>
+        <input type="checkbox" id="IsActive" value="false" name="IsActive" @(Model.IsActive ? "checked" : "") onclick="updateCheckboxValue(this)" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update Item</button>
+</form>
+
+
+<script>
+    function updateCheckboxValue(checkbox) {
+        debugger;
+        checkbox.value = checkbox.checked; // Sets the value to 'true' or 'false'
+    }
+</script>

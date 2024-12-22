@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebApplication3.Models.Items>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Item ID</th>
+            <th>Item Code</th>
+            <th>Item Title</th>
+            <th>Description</th>
+            <th>Sale Price</th>
+            <th>Purchase Price</th>
+            <th>Location</th>
+            <th>Active</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ItemId</td>
+                <td>@item.ItemCode</td>
+                <td>@item.ItemTitle</td>
+                <td>@item.Description</td>
+                <td>@item.SalePrice</td>
+                <td>@item.PurchasePrice</td>
+                <td>@item.Location?.LocationTitle</td>
+                <td>
+                    <span class="badge @(item.IsActive ? "bg-success" : "bg-danger")">
+                        @(item.IsActive ? "Active" : "Inactive")
+                    </span>
+                </td>
+                <td>
+                    <a href="@Url.Action("ItemDetail", "Items", new { id = item.ItemId })" class="text-primary me-2" title="Details">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="@Url.Action("Edit", "Items", new { id = item.ItemId })" class="text-warning me-2" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="@Url.Action("Delete", "Items", new { id = item.ItemId })" class="text-danger" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

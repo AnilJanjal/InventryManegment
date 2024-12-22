@@ -1,0 +1,44 @@
+﻿@model WebApplication3.Models.Items
+
+<h2>Add New Item</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="ItemCode">Item Code</label>
+        <input type="text" class="form-control" id="ItemCode" name="ItemCode" required />
+    </div>
+    <div class="form-group">
+        <label for="ItemTitle">Item Title</label>
+        <input type="text" class="form-control" id="ItemTitle" name="ItemTitle" required />
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea class="form-control" id="Description" name="Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="SalePrice">Sale Price</label>
+        <input type="number" class="form-control" id="SalePrice" name="SalePrice" step="0.01" required />
+    </div>
+    <div class="form-group">
+        <label for="PurchasePrice">Purchase Price</label>
+        <input type="number" class="form-control" id="PurchasePrice" name="PurchasePrice" step="0.01" required />
+    </div>
+    <div class="form-group">
+        <label for="LocationId">Location</label>
+        <select class="form-control" id="LocationId" name="LocationId">
+            <option value="">Select Location</option> <!-- Default option -->
+            @foreach (var location in ViewData["Locations"] as List<Locations>)
+            {
+                <option value="@location.LocationId">@location.LocationTitle</option>
+            }
+        </select>
+    </div>
+
+    <!-- Hidden field to ensure false is sent when checkbox is unchecked -->
+    <input type="hidden" id="IsActive" name="IsActive" value="true" />
+    <div class="form-group">
+        <label for="IsActive">Active</label>
+        <input type="checkbox" id="IsActive" name="IsActive" value="true" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Item</button>
+</form>

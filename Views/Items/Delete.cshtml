@@ -1,0 +1,20 @@
+﻿@model WebApplication3.Models.Items
+
+<h2>Delete Item</h2>
+
+<div>
+    <h4>Are you sure you want to delete this item?</h4>
+    <div>
+        <p><strong>Item Code:</strong> @Model.ItemCode</p>
+        <p><strong>Item Title:</strong> @Model.ItemTitle</p>
+        <p><strong>Description:</strong> @Model.Description</p>
+        <p><strong>Sale Price:</strong> @Model.SalePrice</p>
+        <p><strong>Purchase Price:</strong> @Model.PurchasePrice</p>
+    </div>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" name="id" value="@Model.ItemId" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,15 @@
+﻿@model WebApplication3.Models.Items
+
+<h2>Item Details</h2>
+
+<div>
+   
+    <div>
+        <p><strong>Item Code:</strong> @Model.ItemCode</p>
+        <p><strong>Item Title:</strong> @Model.ItemTitle</p>
+        <p><strong>Description:</strong> @Model.Description</p>
+        <p><strong>Sale Price:</strong> @Model.SalePrice</p>
+        <p><strong>Purchase Price:</strong> @Model.PurchasePrice</p>
+    </div>
+
+    <a asp-action="Index" class="btn btn-secondary">Back</a>

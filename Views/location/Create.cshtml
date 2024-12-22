@@ -1,0 +1,19 @@
+﻿@model WebApplication3.Models.Locations
+
+<h2>Add New Location</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="LocationTitle">Location Name</label>
+        <input type="text" class="form-control" id="LocationTitle" name="LocationTitle" required />
+    </div>
+  
+
+    <!-- Hidden field to ensure false is sent when checkbox is unchecked -->
+    <input type="hidden" id="IsActive" name="IsActive" value="true" />
+    <div class="form-group">
+        <label for="IsActive">Active</label>
+        <input type="checkbox" id="IsActive" name="IsActive" value="true" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Item</button>
+</form>
